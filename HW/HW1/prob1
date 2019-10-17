@@ -1,0 +1,74 @@
+//Ryan Kelly
+//1/16/2019
+//H1
+//Prob1
+
+// I created a stack, I did lookup how to create a stack in c online, how no clue how to do that before then..//Once I created a stack I put all the read lines of texts into the stack and then unpacked the stack to 
+//reverse the text. I am sure there are much more efficent ways of doing this. 
+
+#include <stdio.h>
+#include <string.h>
+#define SIZE 128
+
+
+
+int MAXSIZE = SIZE;
+char stack[SIZE][SIZE];
+int top = -1;
+
+int isempty(){ //Checks if stack is empty, used this function for debugging
+	if(top == -1)
+		return 1;
+	else
+		return 0;
+}
+
+int isfull(){ // Checks if the stack is full, used this function for debugging, returns a (1 | 0) 
+	if(top == MAXSIZE)
+		return 1;
+	else
+		return 0;
+}
+
+int peek(){ // returns the top of the stack, used this for debugging 
+	return stack[top];
+}
+
+char* pop(){ // This functions pop's the element on top of the stack
+	char data[SIZE];
+
+	if(!isempty()){
+		top = top - 1;
+		return stack[top+1];
+	}else{
+		printf("Could not retrieve data, Stack is empty. \n");
+	}
+}
+
+void push(char *data){// This function adds new elements to the stack
+	if(!isfull()){
+		top = top + 1;
+		strcpy(stack[top], data);
+	}else{
+		printf("Could not insert data, stack is full. \n");
+	}
+}
+
+int main (void)
+{
+	char line[SIZE]; // Reads the file
+	FILE * fp = fopen("test.txt", "r");
+	if (fp == NULL) 
+		return 0;
+
+	while(fgets(line, SIZE, fp) != NULL)
+		push(line);
+
+	while(!isempty()){ // Prints the stack until the function is empty
+		char data[SIZE];
+		strcpy(data, pop());
+		printf("%s", data);
+	}
+	return 0;
+
+}
