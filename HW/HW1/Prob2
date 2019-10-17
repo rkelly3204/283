@@ -1,0 +1,33 @@
+/*Ryan Kelly
+ *1/16/2019
+ *HW1
+ *Prob2 
+ *This program converts decimal numbers to 32bit binary numbers */
+
+#include <stdio.h>
+#include <math.h>
+long long convertDToB(int num); //sets the function convert Decimal to Binary
+
+int main() // Main
+{
+	int num;
+	printf("Enter a decimal number to the converter: ");
+	scanf("%d", &num); // sets the entered number to num
+	printf("%d in decimal = %lld in binary\n", num, convertDToB(num));
+	return 0;
+}
+
+long long convertDToB(int num) // Functions converts a decimal to a binary number 
+{
+	long long binNum = 0; //Setting variables
+	int remainder, i = 1, step = 1;
+
+	while (num !=0) // Calculations
+	{
+		remainder = num%2;
+		num /= 2;
+		binNum += remainder*i;
+		i *= 10;
+	}
+	return binNum;
+}
