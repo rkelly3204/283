@@ -1,0 +1,15 @@
+//Ryan Kelly
+//1/16/2019
+//HW1
+//Problem 3
+
+#define mysize sizeof // defining a macro
+
+main(){
+	unsigned short size_of; // declaring variables
+	long iMyVar, *pMyVar;
+
+	pMyVar = iMyVar; // setting iMyVar to pMyVar
+	size_of = ((unsigned long)(pMyVar + 1)) - ((unsigned long) (pMyVar)); // Counting the number address
+	printf("The amount of bits a variable of type long int is: %d\n",size_of); //Printing the output
+}
